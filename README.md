@@ -22,3 +22,9 @@ Create a folder ngnix and create a file `default.conf`
 - we rewrite the incoming request and remove the '/api' from it.
 - Then create a new docker file to configure the nginx.
 - For hot reload we need to configure nginx to allow websocket to web devserver  
+
+#### Travis
+- Add your docker logins to your Travis account for the repository.
+- Than we will login using a single line command into docker
+    `echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin`
+- 

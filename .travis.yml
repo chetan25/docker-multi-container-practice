@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_install
+  - docker build -t chetan2020/react-test -f ./fe-client/Dockerfile.dev ./fe-client
+
+script:
+  - docker run -e CI=truechetan/react-test npm test
+
+after_success:
+  - docker build -t chetan2020/multi-client ./fe-client
+  - docker build -t chetan2020/multi-nginx ./nginx
+  - docker build -t chetan2020/multi-server ./server
+  - docker build -t chetan2020/multi-worker ./worker
+
+  # login and push image to docker hub
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push chetan2020/multi-client
+  - docker push chetan2020/multi-nginx
+  - docker push chetan2020/multi-server
+  - docker push chetan2020/multi-worker
