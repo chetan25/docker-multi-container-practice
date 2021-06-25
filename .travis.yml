@@ -6,7 +6,7 @@ before_install:
   - docker build -t chetan2020/react-test -f ./fe-client/Dockerfile.dev ./fe-client
 
 script:
-  - docker run -e CI=true chetan/react-test npm test
+  - docker run -e CI=true chetan2020/react-test npm test
 
 after_success:
   - docker build -t chetan2020/multi-client ./fe-client
