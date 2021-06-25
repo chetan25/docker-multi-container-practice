@@ -2,7 +2,7 @@ sudo: required
 services:
   - docker
 
-before_install
+before_install:
   - docker build -t chetan2020/react-test -f ./fe-client/Dockerfile.dev ./fe-client
 
 script:
@@ -20,4 +20,3 @@ after_success:
   - docker push chetan2020/multi-nginx
   - docker push chetan2020/multi-server
   - docker push chetan2020/multi-worker
-  
