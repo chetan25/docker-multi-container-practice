@@ -20,3 +20,15 @@ after_success:
   - docker push chetan2020/multi-nginx
   - docker push chetan2020/multi-server
   - docker push chetan2020/multi-worker
+ 
+deploy:
+  provider: elasticbeanstalk
+  region: "ca-central-1"
+  app: "multi-container"
+  env: "Multicontainer-env"
+  bucket_name: "elasticbeanstalk-ca-central-1-798470763111"
+  bucket_path: "multi-container"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY  
